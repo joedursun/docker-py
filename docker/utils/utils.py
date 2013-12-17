@@ -12,7 +12,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-import io
+import StringIO
 import tarfile
 import tempfile
 
@@ -23,7 +23,7 @@ import six
 def mkbuildcontext(dockerfile):
     f = tempfile.NamedTemporaryFile()
     t = tarfile.open(mode='w', fileobj=f)
-    if isinstance(dockerfile, io.StringIO):
+    if isinstance(dockerfile, StringIO.StringIO):
         dfinfo = tarfile.TarInfo('Dockerfile')
         if six.PY3:
             raise TypeError('Please use io.BytesIO to create in-memory '
